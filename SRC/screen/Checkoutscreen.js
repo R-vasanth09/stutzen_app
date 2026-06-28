@@ -12,8 +12,9 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown } from 'react-native-element-dropdown';
+import { clearCart } from '../redux/cartSlice';
 
 const countries = [
   { label: 'India', value: 'India' },
@@ -38,6 +39,7 @@ const stateData = {
 
 const CheckoutScreen = ({ navigation }) => {
   const cartItems = useSelector(state => state.cart.cartItems);
+  const dispatch = useDispatch();
 
   const totalAmount = useMemo(() => {
     return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -279,7 +281,7 @@ const CheckoutScreen = ({ navigation }) => {
 
                   setSuccessModal(false);
 
-                  navigation.navigate('ProductList');
+                  navigation.navigate('Productlist');
                 }}
               >
                 <Text style={styles.goBackText}>Go Back</Text>
@@ -503,32 +505,32 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   dropdown: {
-  height: 55,
-  borderColor: '#D6DAE8',
-  borderWidth: 1,
-  borderRadius: 15,
-  paddingHorizontal: 12,
-  backgroundColor: '#FFF',
-  marginTop: 8,
-},
+    height: 55,
+    borderColor: '#D6DAE8',
+    borderWidth: 1,
+    borderRadius: 15,
+    paddingHorizontal: 12,
+    backgroundColor: '#FFF',
+    marginTop: 8,
+  },
 
-placeholderStyle: {
-  fontSize: 16,
-  color: '#999',
-},
+  placeholderStyle: {
+    fontSize: 16,
+    color: '#999',
+  },
 
-selectedTextStyle: {
-  fontSize: 16,
-  color: '#111827',
-},
+  selectedTextStyle: {
+    fontSize: 16,
+    color: '#111827',
+  },
 
-searchInput: {
-  height: 40,
-  fontSize: 16,
-},
+  searchInput: {
+    height: 40,
+    fontSize: 16,
+  },
 
-iconStyle: {
-  width: 20,
-  height: 20,
-},
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
 });
